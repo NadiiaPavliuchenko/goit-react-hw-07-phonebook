@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Form, Input } from './ContactsForm.styled';
-import { addContact } from '../../redux/contactsSlice';
-import { getContacts } from '../../redux/selectors';
+import { addContact } from '../../redux/operations';
+import { selectContacts } from '../../redux/selectors';
 
 const ContactsForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const handleFormSubmit = e => {
     e.preventDefault();
@@ -20,7 +20,7 @@ const ContactsForm = () => {
       return;
     }
 
-    dispatch(addContact(name, number));
+    dispatch(addContact({ name, number }));
 
     e.target.reset();
   };
